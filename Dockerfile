@@ -1,11 +1,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copia e restaura as dependências
 COPY ["Computadores.csproj", "./"]
 RUN dotnet restore "Computadores.csproj"
 
-# Copia o restante dos arquivos e compila
 COPY . .
 RUN dotnet publish "Computadores.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
